@@ -1,0 +1,17 @@
+modules = ["python-3.11"]
+[agent]
+expertMode = true
+
+[nix]
+run = "python app.py"
+
+modules = ["python-3.11"]
+packages = ["sqlite"]
+
+[[ports]]
+localPort = 81
+externalPort = 3000
+
+[[ports]]
+localPort = 8080
+externalPort = 80
