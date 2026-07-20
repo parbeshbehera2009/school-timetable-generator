@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Subject Management</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f2f2f2;
+    margin:40px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#1565C0;
+    color:white;
+}
+
+input{
+    padding:8px;
+    margin:5px;
+}
+
+button{
+    padding:10px 20px;
+    background:#1565C0;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Subject Management</h1>
+
+<form action="/add_subject" method="POST">
+
+<input
+type="text"
+name="subject_name"
+placeholder="Subject Name"
+required>
+
+<button>Add Subject</button>
+
+</form>
+
+<br>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Subject</th>
+
+<th>Delete</th>
+
+</tr>
+
+{% for subject in subjects %}
+
+<tr>
+
+<td>{{ subject.subject_id }}</td>
+
+<td>{{ subject.subject_name }}</td>
+
+<td>
+
+<a href="/delete_subject/{{ subject.subject_id }}">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+<a href="/dashboard">
+<button>Back to Dashboard
+</button>
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Class Management</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f2f2f2;
+    margin:40px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#1565C0;
+    color:white;
+}
+
+input,select{
+
+    padding:8px;
+    margin:5px;
+
+}
+
+button{
+
+    padding:10px 20px;
+    background:#1565C0;
+    color:white;
+    border:none;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Class Management</h1>
+
+<form action="/add_class" method="POST">
+
+<input
+type="text"
+name="class_name"
+placeholder="Class"
+required>
+
+<input
+type="text"
+name="section"
+placeholder="Section">
+
+    <select name="level" id="level" onchange="setClassDetails()">
+
+        <option value="">Select Level</option>
+
+        <option value="Kindergarten">Kindergarten</option>
+
+        <option value="Primary1">Primary (Classes 1-2)</option>
+
+        <option value="Primary2">Primary (Classes 3-5)</option>
+
+        <option value="Middle">Middle (Classes 6-8)</option>
+
+        <option value="Secondary">Secondary (Classes 9-10)</option>
+
+        <option value="Senior Secondary">Senior Secondary (Classes 11-12)</option>
+
+    </select>
+
+<input
+type="number"
+id="working_days"
+name="working_days"
+readonly>
+
+<input
+type="number"
+id="periods_per_day"
+name="periods_per_day"
+readonly>
+
+<button>Add Class</button>
+
+</form>
+
+<br>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Class</th>
+
+<th>Section</th>
+
+<th>Level</th>
+
+<th>Days</th>
+
+<th>Periods</th>
+
+<th>Delete</th>
+
+</tr>
+
+{% for c in classes %}
+
+<tr>
+
+<td>{{ c.class_id }}</td>
+
+<td>{{ c.class_name }}</td>
+
+<td>{{ c.section }}</td>
+
+<td>{{ c.level }}</td>
+
+<td>{{ c.working_days }}</td>
+
+<td>{{ c.periods_per_day }}</td>
+
+<td>
+
+<a href="/delete_class/{{ c.class_id }}">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+<!--THE JAVASCRIPT PART -->   
+    <script>
+
+    function setClassDetails(){
+
+        var level = document.getElementById("level").value;
+
+        var days = document.getElementById("working_days");
+
+        var periods = document.getElementById("periods_per_day");
+
+        if(level=="Kindergarten"){
+
+            days.value = 5;
+            periods.value = 6;
+
+        }
+
+        else if(level=="Primary1"){
+
+            days.value = 5;
+            periods.value = 6;
+
+        }
+
+        else{
+
+            days.value = 6;
+            periods.value = 8;
+
+        }
+
+    }
+
+    </script>
+<a href="/dashboard">
+<button>Back to Dashboard
+</button>
+</body>
+
+</html>

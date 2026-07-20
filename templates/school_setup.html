@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>School Setup</title>
+
+    <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+    background:#F4F7FC;
+    padding:35px;
+}
+
+.container{
+    width:850px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:14px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+h1{
+    text-align:center;
+    color:#1565C0;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+}
+
+table{
+    width:100%;
+}
+
+td{
+    padding:12px;
+}
+
+label{
+    font-weight:bold;
+    color:#444;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+button{
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.2s;
+}
+
+.primary{
+    width:100%;
+    background:#1565C0;
+    color:white;
+}
+
+.primary:hover{
+    background:#0D47A1;
+}
+
+.danger{
+    width:100%;
+    background:#E53935;
+    color:white;
+}
+
+.danger:hover{
+    background:#C62828;
+}
+
+.back{
+    background:#757575;
+    color:white;
+}
+
+.back:hover{
+    background:#616161;
+}
+
+.footer{
+    text-align:center;
+    margin-top:25px;
+}
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>School Timetable Data Setup </h1>
+
+<form action="/initialize_school" method="POST">
+<h1>School Setup</h1>
+
+<p class="subtitle">
+Configure your school before generating the timetable.
+</p>
+
+<table>
+
+<tr>
+<td>School Name</td>
+<td><input type="text" name="school_name" required></td>
+</tr>
+
+<tr>
+<td>Working Days</td>
+<td><input type="number" name="working_days" value="6"></td>
+</tr>
+
+<tr>
+<td>Primary Periods</td>
+<td><input type="number" name="primary_periods" value="6"></td>
+</tr>
+
+<tr>
+<td>Senior Periods</td>
+<td><input type="number" name="senior_periods" value="8"></td>
+</tr>
+
+<tr>
+<td>Short Break After</td>
+<td><input type="number" name="short_break_after" value="3"></td>
+</tr>
+
+<tr>
+<td>Long Break After</td>
+<td><input type="number" name="long_break_after" value="5"></td>
+</tr>
+
+<tr>
+<th colspan="2">Sections Per Class</th>
+</tr>
+
+<tr><td>LKG</td><td><input type="number" name="lkg_sections" value="2"></td></tr>
+<tr><td>UKG</td><td><input type="number" name="ukg_sections" value="2"></td></tr>
+
+<tr><td>Class 1</td><td><input type="number" name="class1_sections" value="2"></td></tr>
+<tr><td>Class 2</td><td><input type="number" name="class2_sections" value="2"></td></tr>
+<tr><td>Class 3</td><td><input type="number" name="class3_sections" value="2"></td></tr>
+<tr><td>Class 4</td><td><input type="number" name="class4_sections" value="2"></td></tr>
+<tr><td>Class 5</td><td><input type="number" name="class5_sections" value="3"></td></tr>
+<tr><td>Class 6</td><td><input type="number" name="class6_sections" value="2"></td></tr>
+<tr><td>Class 7</td><td><input type="number" name="class7_sections" value="3"></td></tr>
+<tr><td>Class 8</td><td><input type="number" name="class8_sections" value="2"></td></tr>
+<tr><td>Class 9</td><td><input type="number" name="class9_sections" value="2"></td></tr>
+<tr><td>Class 10</td><td><input type="number" name="class10_sections" value="2"></td></tr>
+
+<tr>
+<td colspan="2">
+<label>
+<input type="checkbox" name="delete_old" value="yes">
+Delete previous school data before initialization
+</label>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<button class="primary" type="submit">
+Initialize School
+</button>
+</td>
+<div class="footer">
+
+<a href="/dashboard">
+<button class="back" type="button">
+Back to Dashboard
+</button>
+</a>
+
+</div>
+</tr>
+
+</table>
+</form>
+
+</div>
+
+</body>
+
+</html>

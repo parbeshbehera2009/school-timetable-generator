@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Teacher Assignments</title>
+
+    <style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Segoe UI,Arial,sans-serif;
+    }
+
+    body{
+        background:#F4F7FC;
+        padding:35px;
+    }
+
+    .container{
+        max-width:1200px;
+        margin:auto;
+    }
+
+    .card{
+        background:white;
+        padding:25px;
+        border-radius:12px;
+        box-shadow:0 5px 15px rgba(0,0,0,.08);
+        margin-bottom:25px;
+    }
+
+    h1{
+        color:#1565C0;
+        margin-bottom:10px;
+    }
+
+    h2{
+        color:#1565C0;
+        margin-bottom:15px;
+    }
+
+    .subtitle{
+        color:#666;
+        margin-bottom:25px;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+    }
+
+    th{
+        background:#1565C0;
+        color:white;
+        padding:12px;
+    }
+
+    td{
+        border:1px solid #ddd;
+        padding:10px;
+        text-align:center;
+    }
+
+    tr:nth-child(even){
+        background:#fafafa;
+    }
+
+    select{
+        width:320px;
+        padding:10px;
+        border:1px solid #ccc;
+        border-radius:6px;
+    }
+
+    button{
+        background:#1565C0;
+        color:white;
+        border:none;
+        border-radius:8px;
+        padding:11px 18px;
+        cursor:pointer;
+        transition:.2s;
+    }
+
+    button:hover{
+        background:#0D47A1;
+    }
+
+    .delete{
+        color:#E53935;
+        font-weight:bold;
+        text-decoration:none;
+    }
+
+    .reset{
+        background:#E53935;
+    }
+
+    .reset:hover{
+        background:#C62828;
+    }
+
+    .footer{
+        text-align:center;
+        margin-top:25px;
+    }
+
+</style>
+
+</head>
+
+<body>
+<div class="container"></div>
+<h1>Teacher Assignments</h1>
+
+<p class="subtitle">
+Assign teachers to subjects and classes.
+</p>
+
+<!-- ========================= -->
+<!-- SUBJECT ASSIGNMENT -->
+<!-- ========================= -->
+<div class="card">
+<h2>Assign Subject</h2>
+
+<form method="POST" action="/assign_subject">
+
+<label>Teacher</label><br>
+
+<select name="teacher_id" required>
+
+{% for teacher in teachers %}
+
+<option value="{{ teacher.teacher_id }}">
+
+{{ teacher.teacher_name }} ({{ teacher.teacher_code }})
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<label>Subject</label><br>
+
+<select name="subject_id" required>
+
+{% for subject in subjects %}
+
+<option value="{{ subject.subject_id }}">
+
+{{ subject.subject_name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<button type="submit">
+
+Assign Subject
+
+</button>
+
+</form>
+
+<table>
+
+<tr>
+
+<th>Teacher</th>
+<th>Code</th>
+<th>Subject</th>
+<th>Delete</th>
+
+</tr>
+
+{% for row in subject_assignments %}
+
+<tr>
+
+<td>{{ row.teacher_name }}</td>
+
+<td>{{ row.teacher_code }}</td>
+
+<td>{{ row.subject_name }}</td>
+
+<td>
+
+<a class="delete" href="/delete_teacher_subject/{{ row.id }}">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+</div>
+<hr>
+
+<!-- ========================= -->
+<!-- CLASS ASSIGNMENT -->
+<!-- ========================= -->
+<div class="card">
+<h2>Assign Class</h2>
+
+<form method="POST" action="/assign_class">
+
+<label>Teacher</label><br>
+
+<select name="teacher_id" required>
+
+{% for teacher in teachers %}
+
+<option value="{{ teacher.teacher_id }}">
+
+{{ teacher.teacher_name }} ({{ teacher.teacher_code }})
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<label>Class</label><br>
+
+<label><b>Select Classes</b></label><br><br>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+
+{% for cls in classes %}
+
+<label>
+
+<input type="checkbox"
+       name="class_ids"
+       value="{{ cls.class_id }}">
+
+{{ cls.class_name }} {{ cls.section }}
+
+</label>
+
+{% endfor %}
+
+</div>
+
+<br><br>
+
+<button type="submit">
+
+Assign Class
+
+</button>
+
+</form>
+
+<table>
+</div>
+<tr>
+
+<th>Teacher</th>
+<th>Code</th>
+<th>Class</th>
+<th>Delete</th>
+
+</tr>
+
+{% for row in class_assignments %}
+
+<tr>
+
+<td>{{ row.teacher_name }}</td>
+
+<td>{{ row.teacher_code }}</td>
+
+<td>{{ row.class_name }} {{ row.section }}</td>
+
+<td>
+
+<a href="/delete_teacher_class/{{ row.id }}">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/reset_teacher_assignments">
+
+<button class="reset" type="button">
+
+Reset All Assignments
+
+</button>
+
+</a>
+
+<br><br>
+
+<a href="/dashboard">
+
+<div class="footer">
+
+<a href="/dashboard">
+<button type="button">Back to Dashboard
+</button>
+</a>
+
+</div>
+
+</div>
+
+</a>
+
+</body>
+
+</html>
