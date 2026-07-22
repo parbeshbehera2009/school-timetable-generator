@@ -58,7 +58,7 @@ A web-based School Timetable Management System developed using **Python, Flask, 
 
 ### View Timetable
 
-![View Timetable](static/images/timetable.2.png)
+![View Timetable](static/images/timetable_2.png)
 
 ---
 
