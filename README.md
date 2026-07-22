@@ -62,39 +62,7 @@ A web-based School Timetable Management System developed using **Python, Flask, 
 
 ---
 
-## Installation
 
-1. Clone the repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/school-timetable-system.git
-```
-
-2. Open the project
-
-```bash
-cd school-timetable-system
-```
-
-3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-4. Run the application
-
-```bash
-python app.py
-```
-
-5. Open your browser and visit
-
-```
-http://127.0.0.1:5000
-```
-
----
 
 ## Project Structure
 
