@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Teacher Management</title>
+
+        <style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Segoe UI, Arial, sans-serif;
+    }
+
+    body{
+        background:#F4F7FC;
+    }
+
+    .sidebar{
+        position:fixed;
+        left:0;
+        top:0;
+        width:220px;
+        height:100vh;
+        background:#1565C0;
+        color:white;
+    }
+
+    .logo{
+        text-align:center;
+        padding:30px 20px;
+        border-bottom:1px solid rgba(255,255,255,.2);
+    }
+
+    .logo-circle{
+        width:70px;
+        height:70px;
+        border-radius:50%;
+        background:white;
+        color:#1565C0;
+        margin:auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:28px;
+        font-weight:bold;
+    }
+
+    .logo h2{
+        margin-top:15px;
+    }
+
+    .sidebar a{
+        display:block;
+        color:white;
+        text-decoration:none;
+        padding:14px 22px;
+        transition:.2s;
+    }
+
+    .sidebar a:hover{
+        background:#0D47A1;
+        padding-left:32px;
+    }
+
+    .logout{
+        position:absolute;
+        bottom:20px;
+        width:100%;
+    }
+
+    .content{
+        margin-left:240px;
+        padding:35px;
+    }
+
+    .card{
+        background:white;
+        padding:25px;
+        border-radius:12px;
+        box-shadow:0 4px 12px rgba(0,0,0,.08);
+        margin-bottom:25px;
+    }
+
+    h1{
+        color:#1565C0;
+        margin-bottom:20px;
+    }
+
+    input{
+        width:100%;
+        padding:10px;
+        margin:8px 0;
+        border:1px solid #ccc;
+        border-radius:6px;
+    }
+
+    button{
+        background:#1565C0;
+        color:white;
+        border:none;
+        padding:12px 24px;
+        border-radius:8px;
+        cursor:pointer;
+        transition:.2s;
+    }
+
+    button:hover{
+        background:#0D47A1;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+    }
+
+    th{
+        background:#1565C0;
+        color:white;
+        padding:12px;
+    }
+
+    td{
+        padding:10px;
+        border-bottom:1px solid #ddd;
+        text-align:center;
+    }
+
+    tr:nth-child(even){
+        background:#f8f9fc;
+    }
+
+    tr:hover{
+        background:#eef5ff;
+    }
+
+    .delete{
+        color:#E53935;
+        text-decoration:none;
+        font-weight:bold;
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+<div style="max-width:1200px;margin:auto;">
+
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:30px;
+    ">
+
+        <div>
+
+            <h1>Teacher Management</h1>
+
+            <p style="color:#666;">
+                Add, manage and remove teachers.
+            </p>
+
+        </div>
+
+        <div>
+
+            <a href="/dashboard">
+                <button type="button">
+                    ← Dashboard
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div style="
+        background:white;
+        padding:25px;
+        border-radius:12px;
+        box-shadow:0 5px 15px rgba(0,0,0,.08);
+        margin-bottom:30px;
+    ">
+
+<form method="POST" action="/add_teacher">
+
+    <input
+        type="text"
+        name="employee_id"
+        placeholder="Employee ID"
+        required
+    >
+
+    <input
+        type="text"
+        name="teacher_code"
+        placeholder="Teacher Code"
+        required
+    >
+
+    <input
+        type="text"
+        name="teacher_name"
+        placeholder="Teacher Name"
+        required
+    >
+
+    <input
+        type="text"
+        name="qualification"
+        placeholder="Department"
+    >
+
+    <input
+        type="text"
+        name="phone"
+        placeholder="Phone"
+    >
+
+    <input
+        type="email"
+        name="email"
+        placeholder="Email"
+    >
+
+    <input
+        type="number"
+        name="max_periods"
+        placeholder="Max Periods"
+        required
+    >
+
+    <button type="submit">Add Teacher</button>
+
+</form>
+</div>
+
+<h2 style="color:#1565C0;margin-bottom:15px;">
+    Teacher List
+</h2>
+
+<div style="
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+">
+<table>
+
+    <tr>
+
+        <th>ID</th>
+        <th>Employee ID</th>
+        <th>Teacher Code</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Max Periods</th>
+        <th>Delete</th>
+
+    </tr>
+
+    {% for teacher in teachers %}
+
+    <tr>
+
+        <td>{{ teacher.teacher_id }}</td>
+        <td>{{ teacher.employee_id }}</td>
+        <td>{{ teacher.teacher_code }}</td>
+        <td>{{ teacher.teacher_name }}</td>
+        <td>{{ teacher.qualification }}</td>
+        <td>{{ teacher.phone }}</td>
+        <td>{{ teacher.email }}</td>
+        <td>{{ teacher.max_periods }}</td>
+
+        <td>
+
+            <a href="/delete_teacher/{{ teacher.teacher_id }}">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+</div>
+
+<br>
+
+</div>
+
+</body>
+
+</html>
