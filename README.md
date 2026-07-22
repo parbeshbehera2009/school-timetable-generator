@@ -84,5 +84,6 @@ SchoolTimetable/
 ##Made by
 
 **PB(Parbesh Behera)**
+**#Disclamer/Note:-** This project was developed by me as a school project and it demonstrates the core functionality of automatic timetable generation. Some advanced scheduling scenarios and uncommon real-world constraints (such as complex teacher preferences or specialized scheduling rules. for examlple:-two teachers for the same subject or a single teacher assigned with more than 1 subject,etc.) are not fully implemented in this public version. The project is actively being improved, and future updates may address these edge cases if required.
 
 School Timetable Management System
